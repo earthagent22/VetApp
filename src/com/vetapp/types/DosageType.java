@@ -1,6 +1,6 @@
-package Database;
+package com.vetapp.types;
 
-public enum AmountType {
+public enum DosageType {
     BOTTLE,
     PILLS,
     ML,

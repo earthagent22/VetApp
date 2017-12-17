@@ -1,4 +1,4 @@
-package Database;
+package com.vetapp.types;
 
 public enum Species {
         CANINE,

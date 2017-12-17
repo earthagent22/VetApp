@@ -1,4 +1,8 @@
-package Database;
+package com.vetapp.dto.invoice;
+
+import com.vetapp.dto.person.Client;
+
+import java.time.LocalDate;
 
 public class Charge {
     private Cost item;
@@ -6,6 +10,9 @@ public class Charge {
     private double quantity;
     private Client client;
     private double chargePrice;
+    private LocalDate datePreformed;
+
+    public Charge() {}
 
     public Charge(Cost item, double quantity) {
         this.item = item;

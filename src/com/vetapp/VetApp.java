@@ -1,22 +1,30 @@
 package com.vetapp;
 
 import com.vetapp.controllers.PracticeController;
-import com.vetapp.dto.Practice.PracticeData;
+import com.vetapp.dto.person.Client;
+import com.vetapp.dto.pet.Pet;
 
 import java.util.Scanner;
 
 public class VetApp {
+    private PracticeController practiceController;
 
+    public VetApp() {
+        this.practiceController = new PracticeController();
+    }
 
-    private PracticeData practiceDataOfVetApp;
     private Scanner scanner = new Scanner(System.in);
 
     private boolean quit = false;
+    boolean selectionQuit;
+    Client selectedClient;
+    Pet selectedPet;
 
 
     public void runApp() {
 
         while(!quit) {
+            selectionQuit = false;
             System.out.println("Welcome to Vet App! Please select from the following choices: ");
             printOptions();
             int homeOption = scanner.nextInt();
@@ -26,7 +34,9 @@ public class VetApp {
                     printOptions();
                     break;
                 case 1:
-                    searchOptions();
+                    while(!selectionQuit) {
+                        searchOptions();
+                    }
                     break;
             }
         }
@@ -59,15 +69,16 @@ public class VetApp {
         int searchOptionInput = scanner.nextInt();
         switch (searchOptionInput){
             case 1:
-                practiceController.searchForClient();
+                selectedClient = (practiceController.searchForClient());
                 break;
             case 2:
-                practiceController.searchForPet();
+                selectedPet=practiceController.searchForPet();
                 break;
             case 3:
-                runApp();
+                selectionQuit = true;
                 break;
             default:
+                selectionQuit = true;
                 break;
                 //add try/catch to prevent bad entries
         }

@@ -11,27 +11,28 @@ public class PracticeController {
 
     private Scanner scanner = new Scanner(System.in);
     private PracticeData data;
-    public PracticeController(PracticeData practiceData) {
-        this.data = practiceData;
+
+    public PracticeController() {
+        this.data = new PracticeData();
     }
-    public PracticeController(){}
 
     public Client searchForClient() {
         System.out.print("Client Search - Enter client name: ");
         //system in
         String name = scanner.nextLine();
+
         List<Client> foundClients = data.findClient(name);
-        if (foundClients.size() == 1) {
+        if (foundClients != null && foundClients.size() == 1) {
             System.out.println("Found one client: " + foundClients.get(0).getFullName());
             return foundClients.get(0);
-        } else if (foundClients.size() > 1) {
+        } else if (foundClients != null && foundClients.size() > 1) {
             System.out.println("Found " + foundClients.size() + " clients containing " + name);
             for (int i = 0; i < foundClients.size(); i++) {
                 Client c = foundClients.get(i);
                 System.out.println((i + 1) + " - " + c.getFullName());
             }
             System.out.print("Please select the number of the client you are searching for: ");
-            //get picked client and stuff
+            //get picked client and stuffgit
             int pickedClient = (scanner.nextInt()-1);
             return foundClients.get(pickedClient);
         } else {

@@ -7,13 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PracticeData {
-    private List<Client> clientList = new ArrayList<>();
-    private List<Pet> petList = new ArrayList<>();
+    private List<Client> clientList;
+    private List<Pet> petList;
 //    private List<Vet> vets;
 //    private Address address;
 //    private PhoneNumber phoneNumber;
 
 
+    public PracticeData() {
+        this.clientList = new ArrayList<>();
+        this.petList = new ArrayList<>();
+    }
 
     public void connectPetClient(Pet pet, Client client){
         client.addPet(pet);
@@ -37,14 +41,14 @@ public class PracticeData {
     }
     public List<Client> findClient(String name){
         List<Client> foundClients = new ArrayList<>();
-        for(Client c : this.clientList) {
-            if(c.getFullName().contains(name)) {
-                foundClients.add(c);
+        for(int i = 0; i<clientList.size(); i++) {
+            Client client = clientList.get(i);
+            if(client.getFullName().contains(name)) {
+                foundClients.add(client);
             }
-        }
-        if(foundClients.size()>0) {
-            return foundClients;
-        }
+        }   if(foundClients.size()>0) {
+                return foundClients;
+            }
         return null;
     }
 

@@ -3,7 +3,9 @@ package com.vetapp.controllers;
 import com.vetapp.dto.Practice.PracticeData;
 import com.vetapp.dto.person.Client;
 import com.vetapp.dto.pet.Pet;
+import com.vetapp.types.Species;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,6 +16,11 @@ public class PracticeController {
 
     public PracticeController() {
         this.data = new PracticeData();
+    }
+
+    public void connectPetClient(Pet pet, Client client){
+        client.addPet(pet);
+        pet.addClient(client);
     }
 
     public Client searchForClient() {
@@ -63,5 +70,24 @@ public class PracticeController {
             System.out.println("Pet (" + name + ") not found");
             return null;
         }
+    }
+
+    public boolean addCLient(String nameFirst, String nameLast, LocalDate dateOfBirth){
+        String fullName = nameFirst + " " + nameLast;
+        List<Client> foundClients = data.findClient(fullName);
+        if(foundClients == null){
+            data.addToClientList(new Client(nameFirst, nameLast, dateOfBirth));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean addPet(String name, Species species){
+        if(data.findPet(name) == null){
+            data.addToPetList(new Pet(name, species));
+            return true;
+        }
+        return false;
     }
 }

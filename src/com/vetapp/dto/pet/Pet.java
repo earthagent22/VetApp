@@ -29,6 +29,12 @@ public class Pet {
         petIDGenerator();
     }
 
+    public Pet(String name, Species species){
+        this.name = name;
+        this.species = species;
+        petIDGenerator();
+    }
+
     public Pet(){ }
 
     public String getName() {
@@ -61,6 +67,26 @@ public class Pet {
 
     public int getPetID() {
         return petID;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setSpecies(Species species) {
+        this.species = species;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     public void addClient(Client client){

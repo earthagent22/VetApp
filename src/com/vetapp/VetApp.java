@@ -15,16 +15,16 @@ public class VetApp {
 
     private Scanner scanner = new Scanner(System.in);
 
-    private boolean quit = false;
-    boolean selectionQuit;
+    private boolean mainQuit = false;
+    boolean optionQuit;
     Client selectedClient;
     Pet selectedPet;
 
 
     public void runApp() {
 
-        while(!quit) {
-            selectionQuit = false;
+        while(!mainQuit) {
+            optionQuit = false;
             System.out.println("Welcome to Vet App! Please select from the following choices: ");
             printOptions();
             int homeOption = scanner.nextInt();
@@ -34,7 +34,7 @@ public class VetApp {
                     printOptions();
                     break;
                 case 1:
-                    while(!selectionQuit) {
+                    while(!optionQuit) {
                         searchOptions();
                     }
                     break;
@@ -61,11 +61,10 @@ public class VetApp {
     }
 
     public void searchOptions(){
-        PracticeController practiceController = new PracticeController();
         System.out.println("Are you searching for a Client or a Pet?");
         System.out.println("1 - Client");
         System.out.println("2 - Pet");
-        System.out.println("3 - Return to home screen.");
+        System.out.println("3 - Return to previous selection screen.");
         int searchOptionInput = scanner.nextInt();
         switch (searchOptionInput){
             case 1:
@@ -75,12 +74,27 @@ public class VetApp {
                 selectedPet=practiceController.searchForPet();
                 break;
             case 3:
-                selectionQuit = true;
+                optionQuit = true;
                 break;
             default:
-                selectionQuit = true;
+                optionQuit = true;
                 break;
                 //add try/catch to prevent bad entries
+        }
+    }
+
+    public void establishOptions(){
+        System.out.println("Please enter a number from the options below:");
+        System.out.println("1 - Add a pet.");
+        System.out.println("2 - Add a client.");
+        System.out.println("3 - Connect a client and pet.");
+        System.out.println("4 - Return to previous selection screen.");
+        int searchOptionInput = scanner.nextInt();
+        switch (searchOptionInput){
+            case 1:
+                System.out.print("Enter pet name: ");
+                String name = scanner.nextLine();
+                practiceController.addPet()
         }
     }
 }

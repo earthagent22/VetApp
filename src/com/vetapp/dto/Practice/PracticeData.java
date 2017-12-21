@@ -19,9 +19,12 @@ public class PracticeData {
         this.petList = new ArrayList<>();
     }
 
-    public void connectPetClient(Pet pet, Client client){
-        client.addPet(pet);
-        pet.addClient(client);
+    public void addToClientList(Client client){
+        clientList.add(client);
+    }
+
+    public void addToPetList(Pet pet){
+        petList.add(pet);
     }
 
 
